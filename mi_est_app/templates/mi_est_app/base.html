@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi estacionamiento</title>
+</head>
+<body>
+    <p>
+        <a href="">Mi Estacionamiento</a>
+        {% if user.is_authenticated %}
+            Bienvenido, {{ user.username }}
+        {% else %}
+            <a href="{% url 'mi_est_cuentas:login' %}">Ingresar</a>
+            -
+            <a href="{% url 'mi_est_cuentas:registro' %}">Registrate!</a>
+        {% endif %}
+    </p>
+    {% block content %}{% endblock content %}
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'mi_est_cuentas:logout' %}">
+            <button name="submit">Salir</button>
+        </form>
+    {% endif %}
+</body>
+</html>

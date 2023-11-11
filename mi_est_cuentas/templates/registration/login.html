@@ -1,0 +1,15 @@
+{% extends "mi_est_app/base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <p>Usuario y contraseña no coincided</p>
+    {% endif %}
+
+    <form action="{% url 'mi_est_cuentas:login' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button name='submit'>Entrar</button>
+    </form>
+    
+{% endblock content %}
