@@ -1,0 +1,15 @@
+{% extends "mi_est_app/base.html" %}
+
+{% block content %}
+    <h3>Estacionamiento: {{ esta.titulo }}</h3>
+    <br>
+    <ul>
+        {% for det in detalle %}
+            <li>Publicado: {{ det.fecha }}</li>
+            <li>Publicado: {{ det.tipo }}</li>
+            <li>Publicado: {{ det.ancho }} cm</li>
+            <li>Publicado: {{ det.largo }} cm</li>
+            <li>Publicado: {{ det.desc }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

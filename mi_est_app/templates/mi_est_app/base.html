@@ -10,6 +10,8 @@
         <a href="">Mi Estacionamiento</a>
         {% if user.is_authenticated %}
             Bienvenido, {{ user.username }}
+            -
+            <a href="{% url 'mi_est_app:dashboard' %}">Mi cuenta</a>
         {% else %}
             <a href="{% url 'mi_est_cuentas:login' %}">Ingresar</a>
             -
