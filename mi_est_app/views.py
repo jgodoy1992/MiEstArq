@@ -23,7 +23,6 @@ def estacionamientos(request):
 
 @login_required
 def estacionamiento(request, id):
-    esta = EnArriendo.objects.get(id=id)
-    detalle = esta.detalle_set.order_by('-fecha')
-    context = {'esta': esta, 'detalle': detalle}
+    esta = EnArriendo.objects.filter(owner=request.user).get(id=id)
+    context = {'esta': esta}
     return render(request, 'mi_est_app/estacionamiento.html', context)
