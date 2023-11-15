@@ -1,0 +1,14 @@
+{% extends "mi_est_app/base.html" %}
+
+{% block content %}
+
+    <form action="{% url 'mi_est_app:nuevo_estacionamiento' %}" method="post">
+
+        {% csrf_token %}
+        {{ form.as_div }}
+
+        <button name='submit'>Crear nuevo estacionamiento</button>
+
+    </form>
+
+{% endblock content %}

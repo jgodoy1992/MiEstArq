@@ -3,7 +3,7 @@
 {% block content %}
     <h3>Mis estacionamientos en arriendo</h3>
     <br>
-
+    <button><a href="{% url 'mi_est_app:nuevo_estacionamiento' %}">Agregar nuevo estacionamiento</a></button>
     <ul>
         {% for est in esta %}
             <li><a href="{% url 'mi_est_app:estacionamiento' est.id %}">{{ est.titulo }}</a></li>

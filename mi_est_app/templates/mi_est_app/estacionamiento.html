@@ -5,9 +5,15 @@
     <br>
     <ul>
             <li>Publicado: {{ esta.fecha }}</li>
-            <li>Publicado: {{ esta.tipo }}</li>
-            <li>Publicado: {{ esta.ancho }} cm</li>
-            <li>Publicado: {{ esta.largo }} cm</li>
-            <li>Publicado: {{ esta.desc }}</li>
+            <li>Tipo de estacionamiento: {{ esta.tipo }}</li>
+            <li>Precio: {{ esta.precio }}</li>
+            <li>Ancho: {{ esta.ancho }} cm</li>
+            <li>Largo: {{ esta.largo }} cm</li>
+            <li>Descripcion: {{ esta.desc }}</li>
     </ul>
+    <button><a href="{% url 'mi_est_app:editar_arriendo' esta.id %}">Editar arriendo</a></button>
+    
+    <form action="{% url 'mi_est_app:eliminar_arriendo' esta.id%}">
+        <button name='submit'>Eliminar arriendo</button>
+    </form>
 {% endblock content %}

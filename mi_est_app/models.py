@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class EnArriendo(models.Model):
     titulo = models.CharField(max_length=128)
+    precio = models.CharField(max_length=100)
     fecha = models.DateTimeField(auto_now_add=True)
     tipo = models.CharField(max_length=128)
     desc = models.TextField()

@@ -1,0 +1,13 @@
+{% extends "mi_est_app/base.html" %}
+
+{% block content %}
+
+    <h3>{{ esta.titulo }}</h3>
+
+    <form action="{% url 'mi_est_app:editar_arriendo' esta.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button name='submit'>Editar</button>
+    </form>
+
+{% endblock content %}
