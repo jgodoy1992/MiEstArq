@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import EnArriendo
+from .models import EnArriendo, EstArrendado
 from .forms import ArreindoForm
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'mi_est_app/index.html')
+    estacionamientos = EnArriendo.objects.all()
+    return render(request, 'mi_est_app/index.html', {'estacionamientos': estacionamientos})
 
 
 @login_required
@@ -27,6 +28,37 @@ def estacionamiento(request, id):
     esta = EnArriendo.objects.filter(owner=request.user).get(id=id)
     context = {'esta': esta}
     return render(request, 'mi_est_app/estacionamiento.html', context)
+
+
+@login_required
+def ver_estacionamiento(request, id):
+    esta = EnArriendo.objects.get(id=id)
+    context = {'esta': esta}
+    return render(request, 'mi_est_app/ver_estacionamiento.html', context)
+
+
+@login_required
+def estacionamiento_arrendado(reqeust, id):
+    en_arriendo = EnArriendo.objects.get(id=id)
+    esta_arrendado, created = EstArrendado.objects.get_or_create(
+        user=reqeust.user,
+        source_model=en_arriendo
+    )
+    return redirect('mi_est_app:arriendos')
+
+
+@login_required
+def arriendos(request):
+    arriendo = EstArrendado.objects.filter(user=request.user)
+    context = {'arriendo': arriendo}
+    return render(request, 'mi_est_app/arriendos.html', context)
+
+
+@login_required
+def arriendo(request, id):
+    arriendo = EstArrendado.objects.filter(user=request.user).get(id=id)
+    context = {'arriendo': arriendo}
+    return render(request, 'mi_est_app/arriendo.html', context)
 
 
 @login_required

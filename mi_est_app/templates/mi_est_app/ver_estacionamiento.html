@@ -1,0 +1,22 @@
+{% extends "mi_est_app/base.html" %}
+
+{% block content %}
+    <h3>{{ esta.titulo }}</h3>
+    <br>
+
+    <ul>
+        <li>Publicado: {{ esta.fecha }}</li>
+        <li>Tipo de estacionamiento: {{ esta.tipo }}</li>
+        <li>Precio: {{ esta.precio }}</li>
+        <li>Ancho: {{ esta.ancho }} cm</li>
+        <li>Largo: {{ esta.largo }} cm</li>
+        <li>Descripcion: {{ esta.desc }}</li>
+        <br>
+        <form action="{% url 'mi_est_app:estacionamiento_arrendado' esta.id%}" method="post">
+            {% csrf_token %}
+            <button>Agregar a arriendos</button>
+        </form>
+    </ul>
+
+
+{% endblock content %}

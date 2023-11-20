@@ -1,0 +1,13 @@
+{% extends "mi_est_app/base.html" %}
+
+{% block content %}
+    <h3>Mis Estacionamientos Arrendados</h3>
+    <br>
+    <ul>
+        {% for arr in arriendo %}
+            <li><a href="{% url 'mi_est_app:arriendo' arr.id %}">{{ arr.source_model.titulo }}</a></li>
+        {% empty %}
+            <p>No tiene estacionamietnos arrendados</p>
+        {% endfor %}
+    </ul>
+{% endblock content %}

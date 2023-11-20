@@ -4,4 +4,15 @@
 
 <p>Aqui se puede poner una descripcion de lo que hace la app y cosas asi :)</p>
 
+{% if user.is_authenticated %}
+    <div>
+        {% for est in estacionamientos %}
+        <ul>
+            <li><h4><a href="{% url 'mi_est_app:ver_estacionamiento' est.id %}">{{ est.titulo }}</a></h4></li>
+            <li>{{ est.precio }}</li>
+        </ul>
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% endblock content %} 

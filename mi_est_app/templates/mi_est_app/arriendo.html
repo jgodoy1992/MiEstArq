@@ -1,0 +1,13 @@
+{% extends "mi_est_app/base.html" %}
+
+{% block content %}
+    <h3>Estacionamiento: {{ arriendo.source_model.titulo }}</h3>
+
+    <ul>
+        <li>Tipo de estacionamiento: {{ arriendo.source_model.tipo }}</li>
+        <li>Precio: {{ arriendo.source_model.precio }}</li>
+        <li>Ancho: {{ arriendo.source_model.ancho }}</li>
+        <li>Largo: {{ arriendo.source_model.largo }}</li>
+        <li>Descripcion: {{ arriendo.source_model.desc }}</li>
+    </ul>
+{% endblock content %}

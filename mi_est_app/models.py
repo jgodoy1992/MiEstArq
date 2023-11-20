@@ -14,3 +14,9 @@ class EnArriendo(models.Model):
 
     def __str__(self):
         return self.titulo
+
+
+class EstArrendado(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    source_model = models.ForeignKey(
+        EnArriendo, null=False, blank=False, on_delete=models.CASCADE)

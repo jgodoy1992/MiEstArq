@@ -15,7 +15,7 @@ def registro(request):
                 password=form.cleaned_data['password1']
             )
             login(request, new_user)
-            return redirect('mi_est_app:dashboard')
+            return redirect('mi_est_app:index')
     else:
         form = RegistroUsuario()
 
