@@ -4,26 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi estacionamiento</title>
+
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
-    <p>
-        <a href="{% url 'mi_est_app:index' %}">Mi Estacionamiento</a>
-        {% if user.is_authenticated %}
-            Bienvenido, {{ user.username }}
-            -
-            <a href="{% url 'mi_est_app:dashboard' %}">Mi cuenta</a>
-        {% else %}
-            <a href="{% url 'mi_est_cuentas:login' %}">Ingresar</a>
-            -
-            <a href="{% url 'mi_est_cuentas:registro' %}">Registrate!</a>
-        {% endif %}
-    </p>
-    {% block content %}{% endblock content %}
 
-    {% if user.is_authenticated %}
-        <form action="{% url 'mi_est_cuentas:logout' %}">
-            <button name="submit">Salir</button>
-        </form>
-    {% endif %}
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="{% url 'mi_est_app:index' %}">Mi Estacionamiento</a>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-md-o">
+                {% if user.is_authenticated %}
+                    <li class="nav_item px-4">
+                        Bienvenido, {{ user.username }}
+                    </li>
+                    <br>
+                    <li class="nav_item px-4">
+                        <a href="{% url 'mi_est_app:dashboard' %}">Mi cuenta</a>
+                    </li>
+                {% else %}
+                    <li class="nav_item px-4">
+                        <a href="{% url 'mi_est_cuentas:login' %}">Ingresar</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{% url 'mi_est_cuentas:registro' %}">Registrate!</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            {% if user.is_authenticated %}
+            <form action="{% url 'mi_est_cuentas:logout' %}">
+                <button class="btn btn-outline-secondary btn-sm" name="submit">Salir</button>
+            </form>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="pb-2 mb-2 border-button">
+            {% block page_header %}{% endblock page_header %}
+        </div>
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+    </main>
+    
+
 </body>
 </html>

@@ -1,12 +1,18 @@
 {% extends "mi_est_app/base.html" %}
+{% load django_bootstrap5 %}
+
 
 {% block content %}
 
-    <p>dashboard por hacer</p>
-
     <div style='text-align: center'>
-        <button><a href="{% url 'mi_est_app:estacionamientos' %}">Mis estacionamientos</a></button>-
-        <button><a href="{% url 'mi_est_app:arriendos' %}">Mis arriendos</a></button>
+        <form action="{% url 'mi_est_app:estacionamientos' %}">
+            {% bootstrap_button button_type="submit" content="Mis estacionamientos" %}
+        </form>
+        <br>
+        <form action="{% url 'mi_est_app:arriendos' %}">
+            {% bootstrap_button button_type="submit" content="Mis arriendos" %}
+        </form>
+
     </div>
 
 {% endblock content %}

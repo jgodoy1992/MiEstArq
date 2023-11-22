@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mi_est_app',
     'mi_est_cuentas',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [

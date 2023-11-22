@@ -1,12 +1,20 @@
 {% extends "mi_est_app/base.html" %}
+{% load django_bootstrap5 %}
+
+
+{% block page_header %}
+    <h3>Mis estacionamientos en arriendo</h3>
+{% endblock page_header %}
 
 {% block content %}
-    <h3>Mis estacionamientos en arriendo</h3>
+
+    <form action="{% url 'mi_est_app:nuevo_estacionamiento' %}">
+        {% bootstrap_button button_type="submit" content="Agregar nuevo estacionamiento" %}
+    </form>
     <br>
-    <button><a href="{% url 'mi_est_app:nuevo_estacionamiento' %}">Agregar nuevo estacionamiento</a></button>
-    <ul>
+    <ul class="list-group border-bottom pb-2 mb-4">
         {% for est in esta %}
-            <li><a href="{% url 'mi_est_app:estacionamiento' est.id %}">{{ est.titulo }}</a></li>
+            <li class="list-group-item border-0"><a href="{% url 'mi_est_app:estacionamiento' est.id %}">{{ est.titulo }}</a></li>
         {% empty %}
             <li>No hay estacionamientos registrados</li>
         {% endfor %}

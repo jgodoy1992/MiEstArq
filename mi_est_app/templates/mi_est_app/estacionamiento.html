@@ -1,19 +1,28 @@
 {% extends "mi_est_app/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h2>Estacionamiento: {{ esta.titulo }}</h2>
+{% endblock page_header %}
 
 {% block content %}
-    <h3>Estacionamiento: {{ esta.titulo }}</h3>
-    <br>
-    <ul>
-            <li>Publicado: {{ esta.fecha }}</li>
-            <li>Tipo de estacionamiento: {{ esta.tipo }}</li>
-            <li>Precio: {{ esta.precio }}</li>
-            <li>Ancho: {{ esta.ancho }} cm</li>
-            <li>Largo: {{ esta.largo }} cm</li>
-            <li>Descripcion: {{ esta.desc }}</li>
-    </ul>
-    <button><a href="{% url 'mi_est_app:editar_arriendo' esta.id %}">Editar arriendo</a></button>
+
+    <div class="card-header">
+        <ul class="list-group border-bottom pb-2 mb-4">
+            <li class="list-group-item border-0">Publicado: {{ esta.fecha }}</li>
+            <li class="list-group-item border-0">Tipo de estacionamiento: {{ esta.tipo }}</li>
+            <li class="list-group-item border-0">Precio: {{ esta.precio }}</li>
+            <li class="list-group-item border-0">Ancho: {{ esta.ancho }} cm</li>
+            <li class="list-group-item border-0">Largo: {{ esta.largo }} cm</li>
+            <li class="list-group-item border-0">Descripcion: {{ esta.desc }}</li>
+        </ul>
+    </div>
     
+    <form action="{% url 'mi_est_app:editar_arriendo' esta.id %}">
+        {% bootstrap_button button_type="submit" content="Editar arriendo" %}
+    </form>
+    <br>
     <form action="{% url 'mi_est_app:eliminar_arriendo' esta.id%}">
-        <button name='submit'>Eliminar arriendo</button>
+        {% bootstrap_button button_type="submit" content="Eliminar arriendo" %}
     </form>
 {% endblock content %}
